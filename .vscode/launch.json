@@ -1,0 +1,65 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Run All",
+            "presentation": {
+				"group": "maingroup",
+				"order": 1
+			},
+            "configurations": [
+                "Back End",
+                "Front End"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "Back End",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build backend",
+            "program": "${workspaceFolder}/InvoicesApp/src/Server/bin/Debug/net8.0/Server.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/InvoicesApp/src/Server",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Front End",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build frontend",
+            "program": "${workspaceFolder}/InvoicesApp/src/Client/bin/Debug/net8.0/Client.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/InvoicesApp/src/Client",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
